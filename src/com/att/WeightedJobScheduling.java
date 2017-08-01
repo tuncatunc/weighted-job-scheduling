@@ -21,7 +21,7 @@ public class WeightedJobScheduling {
         this.w = w;
         this.s = s;
         this.f = f;
-        this.maxIndices = new int[w.length];
+        this.maxIndices = new int[w.length]; // Indices with max profit
         Arrays.fill(this.maxIndices, -1);
     }
 
@@ -33,11 +33,12 @@ public class WeightedJobScheduling {
             for(int j = i - 1; j >=0; j--){
                 if (!overlap(i, j)){
                     if (T[i] < T[j] + w[i]){
-                        this.maxIndices[i] = j; // Job i is done with Job j has max profit
+                        this.maxIndices[i] = j; // Job i done with Job j has max profit
                     }
 
                     T[i] = java.lang.Math.max(T[i], T[j] + w[i]);
 
+                    // Index of T[i] where max profit is achieved
                     if (max < T[i]){
                         maxProfitIndex = i;
                     }
